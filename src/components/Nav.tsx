@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { nav, site } from "@/config";
+import { contacts, nav } from "@/config";
 import { useOrderDialog } from "@/components/OrderDialog";
+import { Brand } from "@/components/Brand";
+import { ContactLinks } from "@/components/ContactLinks";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -31,7 +33,7 @@ export function Nav() {
     <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-shadow duration-300 ${
-        scrolled ? "nav-blur shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "nav-blur"
+        scrolled ? "nav-blur shadow-[0_1px_0_hsl(var(--foreground)/0.07)]" : "nav-blur"
       }`}
     >
       <nav
@@ -40,12 +42,10 @@ export function Nav() {
       >
         <a
           href="#top"
-          className="flex items-baseline gap-2 text-[17px] font-semibold tracking-tight text-foreground transition-opacity hover:opacity-70"
+          className="transition-opacity hover:opacity-70"
+          aria-label="Чистик21 — на главную"
         >
-          {site.brand}
-          <span className="hidden text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground sm:inline">
-            {site.city}
-          </span>
+          <Brand />
         </a>
 
         <ul className="hidden items-center gap-8 lg:flex">
@@ -61,7 +61,13 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={contacts.phone.href}
+            className="hidden text-[14px] font-medium text-foreground/85 transition-colors hover:text-foreground md:inline-flex"
+          >
+            {contacts.phone.label}
+          </a>
           <button
             type="button"
             onClick={() => openDialog()}
@@ -70,12 +76,26 @@ export function Nav() {
           >
             Заказать
           </button>
+          <a
+            href={contacts.phone.href}
+            aria-label={`Позвонить ${contacts.phone.label}`}
+            className="flex h-11 w-11 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/5 md:hidden"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 4h4l1.5 4L8 9.5a12 12 0 0 0 6.5 6.5l1.5-2.5 4 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
           <button
             type="button"
             aria-expanded={open}
             aria-label={open ? "Закрыть меню" : "Открыть меню"}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-black/5 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-foreground/5 lg:hidden"
           >
             <span className="relative block h-3.5 w-5">
               <span
@@ -138,6 +158,17 @@ export function Nav() {
           >
             Заказать химчистку
           </button>
+          <a
+            href={contacts.phone.href}
+            tabIndex={open ? 0 : -1}
+            className="mt-3 flex items-center justify-center gap-2 rounded-full py-3 text-[17px] font-medium text-foreground"
+          >
+            {contacts.phone.label}
+          </a>
+          <ContactLinks className="mt-6" showPendingHint={false} tone="plain" />
+          <p className="mt-4 text-[13px] text-muted-foreground">
+            Выездная химчистка · {contacts.schedule.label}
+          </p>
         </div>
       </nav>
     </div>

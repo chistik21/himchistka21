@@ -13,7 +13,7 @@ export function Hero() {
       <div className="mx-auto max-w-6xl px-5 pb-8 pt-16 text-center md:px-8 md:pt-24">
         <Reveal>
           <p className="eyebrow mb-5">
-            Химчистка мебели и ковров · {site.city}
+            {site.brand} · выездная химчистка · {site.city}
           </p>
         </Reveal>
         <Reveal delay={80}>

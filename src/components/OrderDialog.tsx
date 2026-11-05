@@ -161,7 +161,7 @@ export function OrderDialogProvider({ children }: { children: ReactNode }) {
             type="button"
             aria-label="Закрыть"
             onClick={close}
-            className="absolute inset-0 bg-black/30 opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 bg-black/40 opacity-100 transition-opacity duration-300"
             style={{
               WebkitBackdropFilter: "blur(8px)",
               backdropFilter: "blur(8px)",
@@ -171,7 +171,7 @@ export function OrderDialogProvider({ children }: { children: ReactNode }) {
           {/* Панель */}
           <div
             ref={dialogRef}
-            className="relative w-full max-w-lg translate-y-0 rounded-t-[28px] bg-white p-7 opacity-100 shadow-2xl transition-all duration-300 sm:rounded-[28px] sm:p-9"
+            className="relative w-full max-w-lg translate-y-0 rounded-t-[28px] bg-card p-7 text-card-foreground opacity-100 shadow-2xl transition-all duration-300 sm:rounded-[28px] sm:p-9"
           >
             <button
               type="button"

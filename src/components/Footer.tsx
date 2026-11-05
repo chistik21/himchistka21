@@ -1,4 +1,5 @@
-import { nav, site } from "@/config";
+import { contacts, nav, site } from "@/config";
+import { ContactIcons } from "@/components/ContactLinks";
 
 export function Footer() {
   return (
@@ -12,6 +13,16 @@ export function Footer() {
             <p className="mt-1 text-[13px] text-muted-foreground">
               {site.brandSuffix}
             </p>
+            <a
+              href={contacts.phone.href}
+              className="mt-4 inline-block text-[15px] font-medium text-foreground transition-colors hover:text-primary"
+            >
+              {contacts.phone.label}
+            </a>
+            <p className="mt-1 text-[13px] text-muted-foreground">
+              {contacts.schedule.label}
+            </p>
+            <ContactIcons className="mt-4" />
           </div>
 
           <nav aria-label="Навигация в подвале">
@@ -30,12 +41,17 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
           <p className="text-[12px] leading-relaxed text-muted-foreground">
-            © {new Date().getFullYear()} «{site.brand}», {site.city}. Сайт
-            находится в стадии наполнения: контактные данные и фотографии
-            появятся после запуска.
+            © {new Date().getFullYear()} {site.brand}, {site.city}. Выездная
+            химчистка мебели и ковров.
           </p>
+          <a
+            href={contacts.phone.href}
+            className="text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {contacts.phone.label}
+          </a>
         </div>
       </div>
     </footer>
