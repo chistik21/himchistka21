@@ -7,11 +7,10 @@ import { Gallery } from "@/components/Gallery";
 import { CTA } from "@/components/CTA";
 import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
-import { OrderDialogProvider } from "@/components/OrderDialog";
 
 export default function Home() {
   return (
-    <OrderDialogProvider>
+    <>
       <Nav />
       <main>
         <Hero />
@@ -23,6 +22,6 @@ export default function Home() {
         <Contacts />
       </main>
       <Footer />
-    </OrderDialogProvider>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import { services, type Service } from "@/config";
 import { Reveal } from "@/components/Reveal";
-import { useOrderDialog } from "@/components/OrderDialog";
 import serviceSofa from "@/assets/img/service-sofa.jpg";
 import serviceArmchair from "@/assets/img/service-armchair.jpg";
 import serviceMattress from "@/assets/img/service-mattress.jpg";
@@ -17,50 +16,20 @@ const images: Record<Service["image"], string> = {
   serviceUpholstery,
 };
 
-function ArrowIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M1 7h11M8 3l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function ServiceRow({ service, index }: { service: Service; index: number }) {
-  const { openDialog } = useOrderDialog();
   const reversed = index % 2 === 1;
 
   return (
-    <div
-      className={`grid items-center gap-8 md:grid-cols-2 md:gap-14 lg:gap-20`}
-    >
-      <Reveal
-        className={`reveal-img ${reversed ? "md:order-2" : ""}`}
-      >
-        <button
-          type="button"
-          onClick={() => openDialog(service.title)}
-          className="img-zoom-parent block w-full overflow-hidden rounded-[28px] bg-surface text-left"
-          aria-label={`Заказать: ${service.title}`}
-        >
+    <div className={`grid items-center gap-8 md:grid-cols-2 md:gap-14 lg:gap-20`}>
+      <Reveal className={`reveal-img ${reversed ? "md:order-2" : ""}`}>
+        <div className="img-zoom-parent overflow-hidden rounded-[28px] bg-surface">
           <img
             src={images[service.image]}
             alt={service.alt}
             className="img-zoom aspect-[3/2] w-full object-cover"
             loading="lazy"
           />
-        </button>
+        </div>
       </Reveal>
 
       <div className={reversed ? "md:order-1" : ""}>
@@ -71,15 +40,6 @@ function ServiceRow({ service, index }: { service: Service; index: number }) {
           <p className="mt-4 max-w-md text-[17px] leading-relaxed text-muted-foreground">
             {service.description}
           </p>
-        </Reveal>
-        <Reveal delay={160}>
-          <button
-            type="button"
-            onClick={() => openDialog(service.title)}
-            className="link-arrow mt-6"
-          >
-            Заказать <ArrowIcon />
-          </button>
         </Reveal>
       </div>
     </div>

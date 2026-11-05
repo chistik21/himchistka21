@@ -1,6 +1,5 @@
 import { contacts, site } from "@/config";
 import { Reveal } from "@/components/Reveal";
-import { useOrderDialog } from "@/components/OrderDialog";
 import { ContactLinks } from "@/components/ContactLinks";
 
 function PhoneIcon() {
@@ -55,8 +54,6 @@ function ChatIcon() {
 }
 
 export function Contacts() {
-  const { openDialog } = useOrderDialog();
-
   return (
     <section id="contacts" className="bg-surface py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -87,16 +84,6 @@ export function Contacts() {
               <p className="mt-2 text-[13px] text-muted-foreground">
                 {contacts.phone.hint}
               </p>
-              <button
-                type="button"
-                onClick={() => openDialog()}
-                className="link-arrow mt-auto pt-6 text-[15px]"
-              >
-                Или оставьте заявку на сайте
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
             </div>
           </Reveal>
 
@@ -108,7 +95,7 @@ export function Contacts() {
                 MAX или ВКонтакте — удобно отправить фото мебели и коротко
                 описать задачу.
               </p>
-              <ContactLinks className="mt-5" onOrder={() => openDialog()} />
+              <ContactLinks className="mt-5" />
             </div>
           </Reveal>
 

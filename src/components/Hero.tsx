@@ -1,11 +1,9 @@
-import { site } from "@/config";
+import { contacts, site } from "@/config";
 import { Reveal } from "@/components/Reveal";
 import { useParallax } from "@/hooks/useParallax";
-import { useOrderDialog } from "@/components/OrderDialog";
 import heroImg from "@/assets/img/hero.jpg";
 
 export function Hero() {
-  const { openDialog } = useOrderDialog();
   const parallaxRef = useParallax<HTMLDivElement>(48);
 
   return (
@@ -26,9 +24,9 @@ export function Hero() {
         </Reveal>
         <Reveal delay={240}>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button type="button" onClick={() => openDialog()} className="btn-primary w-full sm:w-auto">
-              Заказать химчистку
-            </button>
+            <a href={contacts.phone.href} className="btn-primary w-full sm:w-auto">
+              Позвонить
+            </a>
             <a href="#services" className="btn-secondary w-full sm:w-auto">
               Наши услуги
             </a>
@@ -47,7 +45,6 @@ export function Hero() {
               alt="Специалист проводит профессиональную химчистку светлого дивана в просторной светлой комнате"
               className="parallax-media h-full w-full object-cover"
               loading="eager"
-              fetchPriority="high"
             />
           </div>
         </Reveal>

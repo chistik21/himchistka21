@@ -1,10 +1,7 @@
 import { advantages } from "@/config";
 import { Reveal } from "@/components/Reveal";
-import { useOrderDialog } from "@/components/OrderDialog";
 
 export function Advantages() {
-  const { openDialog } = useOrderDialog();
-
   return (
     <section id="advantages" className="bg-background py-24 md:py-36">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -24,15 +21,6 @@ export function Advantages() {
                 работу — и это заметно.
               </p>
             </Reveal>
-            <Reveal delay={220}>
-              <button
-                type="button"
-                onClick={() => openDialog()}
-                className="btn-primary mt-9 hidden lg:inline-flex"
-              >
-                Оставить заявку
-              </button>
-            </Reveal>
           </div>
 
           <div>
@@ -48,15 +36,6 @@ export function Advantages() {
                 </div>
               </Reveal>
             ))}
-            <Reveal delay={320}>
-              <button
-                type="button"
-                onClick={() => openDialog()}
-                className="btn-primary mt-9 w-full sm:w-auto lg:hidden"
-              >
-                Оставить заявку
-              </button>
-            </Reveal>
           </div>
         </div>
       </div>

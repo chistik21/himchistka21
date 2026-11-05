@@ -6,9 +6,8 @@ type LinksProps = {
   className?: string;
   /** Текст-подсказка под кнопками, когда ссылка ещё не задана */
   showPendingHint?: boolean;
-  /** «tinted» — для светлых карточек, «plain» — для фонового меню */
+  /** «tinted» — для светлых карточек, «plain» — для фото-баннера */
   tone?: "tinted" | "plain";
-  onOrder?: () => void;
 };
 
 /**
@@ -23,13 +22,12 @@ export function ContactLinks({
   className,
   showPendingHint = true,
   tone = "tinted",
-  onOrder,
 }: LinksProps) {
   const pending = [contacts.max, contacts.vk].filter((c) => !c.href);
 
   return (
     <div className={className}>
-      <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+      <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">
         <LinkButton
           icon={<MaxIcon size={18} />}
           label="Написать в MAX"
@@ -46,15 +44,8 @@ export function ContactLinks({
 
       {showPendingHint && pending.length > 0 && (
         <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
-          Аккаунты в {pending.map((p) => p.name).join(" и ")} скоро появятся.{" "}
-          {onOrder ? (
-            <button type="button" onClick={onOrder} className="underline underline-offset-2 hover:text-foreground">
-              Оставьте заявку
-            </button>
-          ) : (
-            "Оставьте заявку"
-          )}{" "}
-          или позвоните — ответим сразу.
+          Аккаунты в {pending.map((p) => p.name).join(" и ")} скоро появятся.
+          Позвоните — ответим сразу.
         </p>
       )}
     </div>
@@ -79,7 +70,7 @@ function LinkButton({
   const activeStyle =
     tone === "tinted"
       ? "bg-surface text-foreground hover:bg-border"
-      : "border border-border text-foreground hover:bg-foreground/5";
+      : "border border-white/40 text-foreground hover:bg-white/10";
 
   if (href) {
     return (
@@ -102,19 +93,19 @@ function LinkButton({
       className={cn(
         base,
         "cursor-default border border-dashed text-muted-foreground",
-        tone === "tinted" ? "border-input" : "border-border",
+        tone === "plain" ? "border-white/30" : "border-input",
       )}
     >
       {icon}
       {label}
-      <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground/80">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.12em] opacity-80">
         скоро
       </span>
     </span>
   );
 }
 
-/** Компактная текстовая версия для футера и шапки. */
+/** Компактная текстовая версия для футера. */
 export function ContactIcons({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
@@ -141,7 +132,10 @@ function IconLink({
       <span
         aria-disabled="true"
         title={`${label} — скоро`}
-        className={cn(cls, "cursor-default text-muted-foreground/50 hover:bg-surface hover:text-muted-foreground/50")}
+        className={cn(
+          cls,
+          "cursor-default text-muted-foreground/50 hover:bg-surface hover:text-muted-foreground/50",
+        )}
       >
         {icon}
         <span className="sr-only">{label} — скоро</span>

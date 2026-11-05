@@ -1,12 +1,9 @@
 import { contacts } from "@/config";
 import { Reveal } from "@/components/Reveal";
-import { useOrderDialog } from "@/components/OrderDialog";
 import { ContactLinks } from "@/components/ContactLinks";
 import ctaImg from "@/assets/img/cta.jpg";
 
 export function CTA() {
-  const { openDialog } = useOrderDialog();
-
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -28,30 +25,18 @@ export function CTA() {
         </Reveal>
         <Reveal delay={100}>
           <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/85 md:text-lg">
-            Оставьте заявку или позвоните — согласуем удобное время и приедем с
-            нужным оборудованием.
+            Позвоните или напишите — согласуем удобное время и приедем с нужным
+            оборудованием.
           </p>
         </Reveal>
         <Reveal delay={180}>
-          <div className="mt-9 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={() => openDialog()}
-              className="btn-ghost-light"
-            >
-              Оставить заявку
-            </button>
-            <a
-              href={contacts.phone.href}
-              className="btn-ghost-dark"
-            >
-              {contacts.phone.label}
-            </a>
-          </div>
+          <a href={contacts.phone.href} className="btn-ghost-light mt-9">
+            {contacts.phone.label}
+          </a>
         </Reveal>
         <Reveal delay={240}>
           <ContactLinks
-            className="mt-8 flex w-full flex-col items-center"
+            className="mt-8 flex w-full flex-col items-center text-white"
             showPendingHint={false}
             tone="plain"
           />
